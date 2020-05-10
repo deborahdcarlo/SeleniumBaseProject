@@ -1,4 +1,6 @@
-﻿namespace SampleFramework
+﻿using Enums.SampleFramework;
+
+namespace Model.SampleFramework
 {
     public class TestUser
     {

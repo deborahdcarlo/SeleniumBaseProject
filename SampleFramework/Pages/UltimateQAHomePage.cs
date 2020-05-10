@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SampleFramework
+namespace Pages.SampleFramework
 {
     internal class UltimateQAHomePage : BasePage
     {

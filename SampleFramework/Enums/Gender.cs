@@ -1,4 +1,4 @@
-﻿namespace SampleFramework
+﻿namespace Enums.SampleFramework
 {
     public enum Gender
     {

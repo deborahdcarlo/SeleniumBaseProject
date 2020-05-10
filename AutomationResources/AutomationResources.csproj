@@ -15,8 +15,4 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="80.0.3987.10600" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AutomationResources\AutomationResources.csproj" />
-  </ItemGroup>
-
 </Project>
