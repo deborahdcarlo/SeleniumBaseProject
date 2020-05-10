@@ -1,11 +1,11 @@
 ﻿using Enums.SampleFramework;
 using Model.SampleFramework;
+using NLog;
 using OpenQA.Selenium;
-using System;
 
 namespace Pages.SampleFramework
 {
-    internal class SampleApplicationPage : BasePage
+    internal class HomePage : BasePage
     {
         public bool IsVisible => Driver.Title.Contains("Sample Application Lifecycle - Sprint 4");
         public IWebElement FirstNameField => Driver.FindElement(By.Name("firstname"));        
@@ -20,11 +20,15 @@ namespace Pages.SampleFramework
         public IWebElement FemaleEmergencyRadioButton => Driver.FindElement(By.Id("radio2-f"));
         public IWebElement OtherEmergencyRadioButton => Driver.FindElement(By.Id("radio2-0"));
 
-        public SampleApplicationPage(IWebDriver driver) : base(driver) {}
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
+        public HomePage(IWebDriver driver) : base(driver) {}
 
         internal void GoTo()
         {
-            Driver.Navigate().GoToUrl("https://ultimateqa.com/sample-application-lifecycle-sprint-4");
+            var url = "https://ultimateqa.com/sample-application-lifecycle-sprint-4";
+            Driver.Navigate().GoToUrl(url);            
+            _logger.Info($"Opened url=> {url}");
         }
 
         public void FillOutPersonalDetails(TestUser user)
@@ -32,13 +36,15 @@ namespace Pages.SampleFramework
             SetPersonalGender(user);
             FirstNameField.SendKeys(user.FirstName);
             LastNameField.SendKeys(user.LastName);
-           
+            _logger.Info($"Fill out Personal Contact Form with =>{user.FirstName} and {user.LastName}");
+
         }
         public void FillOutEmergencyContact(TestUser user)
         {
             SetEmergencyGender(user);
             FirstNameEmergencyField.SendKeys(user.FirstName);
             LastNameEmergencyField.SendKeys(user.LastName);
+            _logger.Info($"Fill out Emergency Contact Form with =>{user.FirstName} and {user.LastName}");
         }
 
         public UltimateQAHomePage SubmitForm()

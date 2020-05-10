@@ -16,7 +16,7 @@ namespace Tests.SampleFramework
     public class HomePageTest : BaseTest
     {
         
-        internal SampleApplicationPage SampleApplicationPage { get; private set; }
+        internal HomePage HomePage { get; private set; }
 
         [TestMethod]
         [Description("This tests the form submition in the home page")]
@@ -26,16 +26,16 @@ namespace Tests.SampleFramework
         public void SampleTest(string firstName, string lastName, Gender gender)
         {
 
-            SampleApplicationPage = new SampleApplicationPage(Driver);
+            HomePage = new HomePage(Driver);
             var testUser = CreateUser(firstName, lastName, gender);
             var emergencyContactUser = CreateUser("emergency", "test", gender);
 
-            SampleApplicationPage.GoTo();
-            Assert.IsTrue(SampleApplicationPage.IsVisible, "Sample Application Page was not visible");
+            HomePage.GoTo();
+            Assert.IsTrue(HomePage.IsVisible, "Sample Application Page was not visible");
 
-            SampleApplicationPage.FillOutPersonalDetails(testUser);            
-            SampleApplicationPage.FillOutEmergencyContact(emergencyContactUser);
-            var ultimateQAHomePage = SampleApplicationPage.SubmitForm();
+            HomePage.FillOutPersonalDetails(testUser);            
+            HomePage.FillOutEmergencyContact(emergencyContactUser);
+            var ultimateQAHomePage = HomePage.SubmitForm();
 
             Assert.IsTrue(ultimateQAHomePage.IsVisible, "Ultimate QA Page was not visible");
         }
